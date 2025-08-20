@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: movie-related-api
+    name: movie-recommender
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app --bind 0.0.0.0:$PORT"
     plan: free
     envVars:
-      - key: TMDB_KEY
-        sync: false
+      - key: TMDB_API_KEY
+        sync: false   # You will set this manually in Render dashboard
